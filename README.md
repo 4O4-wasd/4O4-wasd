@@ -39,6 +39,4 @@
 ### Learning
 
 -   Scylla DB
--   C#
--   Unity
--   Blender
+-   Docker
