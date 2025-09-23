@@ -1,42 +1,23 @@
-## Just a guy who likes to code
+## a guy who likes to code
 
-### Languages i have learned :
+### languages i have learned:
+-    Typescript, Dart and C++ (though a bit rough)
 
--   Typescript
--   Dart
--   C++(though a bit rough)
+### tools that i have used:
+-   Next js, Solid js, React Native, Expo, Unreal, Firebase, Flutter
 
-### Tools that i have used:
+### databases that i like:
+-   LibSQL(sqlite), PostgreSQL, Cassandra, Redis, MySQL, Apache Kafka (still rough at)
 
--   Next js
--   Solid js
--   React Native
--   Expo
--   Unreal
--   Firebase
--   Flutter
-
-### Databases that I love:
-
--   LibSQL(sqlite)
--   PostgreSQL
--   Cassandra
--   Redis
--   MySQL
--   Apache Kafka (still rough at)
-
-### Currently work on
+### working on
 
 -   [ShowSpace.dev](https://showspace.dev) - A Platform where devs can share their projects and get feedback in form of reviews
 
-### Projects (only good ones)
+### projects (only good ones)
 
--   [ShowSpace.dev](https://showspace.dev)
-    -   stack - Next js, LibSQL, Redis and Firebase
--   [ParkourGame (J.A.P.G)](https://github.com/4O4-wasd/ParkourGame) - An FPS rage parkour game
-    -   stack - Unreal Engine 5.5 and C++
+-   [ShowSpace.dev](https://showspace.dev) [made with - Next js, LibSQL, Redis and Firebase]
+-   [ParkourGame (J.A.P.G)](https://github.com/4O4-wasd/ParkourGame) - An FPS rage parkour game [made with - Unreal Engine 5.5 and C++]
 
-### Learning
+### learning
 
--   Scylla DB
--   Docker
+-   Scylla DB and Docker
