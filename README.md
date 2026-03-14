@@ -1,59 +1,24 @@
-# 4O4Wasd
+## a guy who likes to code
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.2.
+### languages i have learned:
 
-## Development server
+- Typescript, Dart and C++ (though a bit rough)
 
-To start a local development server, run:
+### tools that i have used:
 
-```bash
-ng serve
-```
+- Next js, Solid js, React Native, Expo, Unreal, Firebase, Flutter
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### databases that i like:
 
-## Code scaffolding
+- LibSQL(sqlite), PostgreSQL, Cassandra, Redis, MySQL, Apache Kafka (still rough at)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### projects (only good ones)
 
-```bash
-ng generate component component-name
-```
+- [ShowSpace.dev](https://showspace.dev) [made with - Next js, LibSQL, Redis and Firebase]
+- [ParkourGame (J.A.P.G)](https://github.com/4O4-wasd/ParkourGame) - An FPS rage parkour game [made with - Unreal Engine 5.5 and C++]
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### learning
 
-```bash
-ng generate --help
-```
+- Scylla DB and Docker
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+if you want to hire me (pls hire me) pls contact me here dontcontactmeiamnotfourofour@gmail.com
