@@ -1,0 +1,87 @@
+@layer theme, base, components, utilities;
+
+@import "tailwindcss";
+@import "@heroui/styles";
+@plugin "@tailwindcss/typography";
+
+@import "./themes/one-dark.css" layer(theme);
+
+@custom-variant xs (@media (width >= 480px));
+
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("/fonts/JetBrainsMono.ttf") format("truetype");
+    font-weight: 100 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --font-jet-mono: "JetBrains Mono", monospace;
+}
+
+* {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+@theme inline {
+    --font-sans: var(--font-jet-mono), sans-serif;
+    --font-mono: var(--font-jet-mono), monospace;
+}
+
+main {
+    @apply flex max-w-3xl md:border-x-2 mx-auto h-dvh p-3;
+}
+
+@layer components {
+    .tag {
+        @apply rounded-none;
+    }
+}
+
+pre {
+    @apply p-3 text-sm my-2 overflow-scroll rounded-none font-medium leading-5;
+}
+
+@layer base {
+    .prose {
+        --tw-prose-body: var(--foreground) !important;
+        --tw-prose-headings: var(--foreground) !important;
+        --tw-prose-lead: var(--muted) !important;
+        --tw-prose-links: var(--accent) !important;
+        --tw-prose-bold: var(--foreground) !important;
+        --tw-prose-counters: var(--muted) !important;
+        --tw-prose-bullets: var(--muted) !important;
+        --tw-prose-hr: var(--border) !important;
+        --tw-prose-quotes: var(--foreground) !important;
+        --tw-prose-quote-borders: var(--border) !important;
+        --tw-prose-captions: var(--muted) !important;
+        --tw-prose-code: var(--accent) !important;
+        --tw-prose-pre-code: var(--foreground) !important;
+        --tw-prose-pre-bg: var(--surface) !important;
+        --tw-prose-th-borders: var(--border) !important;
+        --tw-prose-td-borders: var(--border) !important;
+
+        --tw-prose-invert-body: var(--foreground) !important;
+        --tw-prose-invert-headings: var(--foreground) !important;
+        --tw-prose-invert-lead: var(--muted) !important;
+        --tw-prose-invert-links: var(--accent) !important;
+        --tw-prose-invert-bold: var(--foreground) !important;
+        --tw-prose-invert-counters: var(--muted) !important;
+        --tw-prose-invert-bullets: var(--muted) !important;
+        --tw-prose-invert-hr: var(--border) !important;
+        --tw-prose-invert-quotes: var(--foreground) !important;
+        --tw-prose-invert-quote-borders: var(--border) !important;
+        --tw-prose-invert-captions: var(--muted) !important;
+        --tw-prose-invert-code: var(--accent) !important;
+        --tw-prose-invert-pre-code: var(--foreground) !important;
+        --tw-prose-invert-pre-bg: var(--surface) !important;
+        --tw-prose-invert-th-borders: var(--border) !important;
+        --tw-prose-invert-td-borders: var(--border) !important;
+    }
+}

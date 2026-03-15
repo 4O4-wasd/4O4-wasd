@@ -1,0 +1,84 @@
+/* src/themes/one-dark.css */
+@layer base {
+    /* One Dark Pro */
+    [data-theme="one-dark"] {
+        color-scheme: dark;
+
+        /* Primitive Colors (Do not change between light and dark) */
+        --white: oklch(100% 0 0);
+        --black: oklch(0% 0 0);
+        --snow: #d7dae0;
+        --eclipse: #16191d;
+
+        /* Spacing & Layout */
+        --spacing: 0.25rem;
+        --border-width: 1px;
+        --field-border-width: 0px;
+        --disabled-opacity: 0.5;
+        --ring-offset-width: 2px;
+        --cursor-interactive: pointer;
+        --cursor-disabled: not-allowed;
+
+        /* Radius */
+        --radius: 0px;
+        --field-radius: 0px;
+
+        /* Base Colors - editor.background */
+        --background: #16191d;
+        --foreground: #abb2bf;
+
+        /* Surface: non-overlay components - editorGroup.background / sideBar */
+        --surface: #1e2227;
+        --surface-foreground: var(--foreground);
+
+        /* Overlay: floating/overlay components - editorWidget / dropdown */
+        --overlay: #23272e;
+        --overlay-foreground: var(--foreground);
+
+        /* Muted / comments */
+        --muted: #7f848e;
+        --scrollbar: #4e5666;
+
+        /* Default button/element fill */
+        --default: #2c313a;
+        --default-foreground: #d7dae0;
+
+        /* Form Field Defaults */
+        --field-background: #1d1f23;
+        --field-foreground: #abb2bf;
+        --field-placeholder: #5c6370;
+        --field-border: transparent;
+
+        /* Accent - editorCursor / activityBarBadge / links */
+        --accent: #61afef;
+        --accent-foreground: #16191d;
+
+        /* Status */
+        --success: #98c379;
+        --success-foreground: #16191d;
+
+        --warning: #d19a66;
+        --warning-foreground: #16191d;
+
+        --danger: #db3b3e;
+        --danger-foreground: #d7dae0;
+
+        /* Component Colors - segment tabs */
+        --segment: #2c313a;
+        --segment-foreground: #d7dae0;
+
+        /* Misc */
+        --border: #3e4452;
+        --separator: #343a45;
+        --focus: var(--accent);
+        --link: #61afef;
+
+        /* Shadows */
+        --surface-shadow: 0 0 0 0 transparent inset;
+        --overlay-shadow: 0 0 0 0 transparent inset;
+        --field-shadow: 0 0 0 0 transparent inset;
+
+        /* Skeleton Animation */
+        --skeleton-animation: pulse;
+    }
+}
