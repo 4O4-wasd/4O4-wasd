@@ -13,6 +13,8 @@ export type PostMeta = {
 };
 
 export function getAllPosts(): PostMeta[] {
+    if (!fs.existsSync(postsDir)) return [];
+
     const files = fs.readdirSync(postsDir);
     return files
         .map((file) => {
