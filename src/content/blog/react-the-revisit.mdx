@@ -1,0 +1,133 @@
+---
+title: "React: The Revisit"
+date: 2026-03-16
+tags: [react, javascript, nextjs, webdev, frontend]
+description: "a recap of react"
+---
+
+Meet the world class framework React which is famous for being famous and has best-in-class reliability, a very big and **good** eco-system and is very fun to write. So be ready for a frame-library that took down the whole internet and made [this guy's career](https://youtu.be/mMQCLQTky34).
+
+## History
+
+React was created by **Jordan Walke**, a software engineer at Facebook, and first deployed on Facebook's News Feed in **2011**. It was later used on Instagram in **2012**.
+
+Fast forward to **May 2013**. React was open-sourced at [JSConf](https://jsconf.com/), and initially devs were put off... _ew wtf is that._
+
+After JSConf's cold response, Facebook launched a **world tour** of meetups to convert haters. Then [Pete Hunt's JSConf EU talk](https://www.youtube.com/watch?v=x7cQ3mrcKaY), _"Rethinking Best Practices"_, shifted opinion by reframing everything devs hated about React as intentional and clever.
+
+The Virtual DOM was actually a nice concept. It made development easy and it was fast if you knew what you were doing. Big names like **Airbnb** and **the NYT** adopted it, and then adoption went **BONKERS**.
+
+And then **React Native** was introduced in **2015** and adoption went even more **BONKERS**.
+
+## Setting Up
+
+Open your terminal and run:
+
+```bash
+npx create-next-app the-name
+```
+
+You'll be prompted with some options:
+
+- Choose **Pages Router** if you want to ship something meaningful
+- Choose **App Router** if you want to make another ChatGPT wrapper
+
+> And if you're wondering why we're using `create-next-app` instead of bare React. Hate to break it to you, but [Vercel controls React now](https://vercel.com/blog/vercel-and-react).
+
+## Coding
+
+Once you're set up, you can start building components. Here's a quick rundown of the hooks you'll live in:
+
+### useState: Reactive State
+
+```jsx
+const [count, setCount] = useState(0);
+```
+
+`useState` gives you two things: the current value, and a setter function. When you call the setter, React re-runs your component function from the top with the new value. This is called a **re-render**. After re-rendering, React compares the new output against the previous one and only updates what actually changed in the real DOM. That diffing process is called **reconciliation**, and it's what keeps React fast. It's not re-painting the whole page, just patching the diff.
+
+A few things that do _not_ trigger a re-render: mutating a plain variable (`let x = 0; x++`), or calling the setter with the same value it already holds. React does an `Object.is` check before scheduling anything, so `setCount(count)` when `count` is already `1` is a no-op.
+
+One thing worth knowing: if your new state depends on the current state, don't write `setCount(count + 1)`. In async contexts, `count` might be stale by the time that runs. Use the functional form instead:
+
+```jsx
+setCount((prev) => prev + 1);
+```
+
+React guarantees `prev` is always the latest value.
+
+### useMemo: Derived State
+
+```jsx
+const doubled = useMemo(() => count * 2, [count]);
+```
+
+`useMemo` is for computed values that you want to derive from state without recomputing on every single render. You hand it a function and a dependency array. React runs the function once, caches the result, and only re-runs it when something in the dependency array changes. If `count` hasn't changed since the last render, `doubled` just returns the cached value without touching the function at all. Without `useMemo`, that function would re-run on every render for any reason, which is wasted compute for anything expensive.
+
+### useEffect: Side Effects
+
+```jsx
+useEffect(() => {
+    console.log("count changed:", count);
+}, [count]);
+```
+
+Use this when you want to _do something_ when state changes, without computing a new value. The callback always fires after the first render regardless of what's in the dependency array. After that, it only re-fires when the deps change.
+
+If you return a function from your callback, React treats it as a cleanup. It runs before the next time the effect fires, and again when the component unmounts. That's where you cancel intervals, unsubscribe from listeners, abort fetches, and so on:
+
+```jsx
+useEffect(() => {
+    const id = setInterval(() => tick(), 1000);
+    return () => clearInterval(id);
+}, []);
+```
+
+The dependency array controls when all of this happens. No array at all means it runs after every render. An empty array means it runs once on mount. An array with values means it runs when any of those values change.
+
+### useCallback: Stable Function References
+
+```jsx
+const handleClick = useCallback(() => {
+    doSomething(value);
+}, [value]);
+```
+
+Every time your component re-renders, every function defined inside it gets recreated as a new reference. That's normally fine, but if you're passing that function as a prop to a child component wrapped in `React.memo`, the child sees a new prop on every render and re-renders anyway, making the memo pointless. `useCallback` caches the function reference and only creates a new one when something in the dependency array changes, so the child actually gets a stable prop and can skip the re-render.
+
+The trap to watch out for: if your function closes over a variable, meaning it reads something from outside its own scope: you need that variable in the dependency array. If you leave it out, the function keeps referencing the value it saw on the render it was created, and it will never update. That's called a stale closure, and it's one of the most common bugs people hit with hooks. The fix is just adding the variable to the deps.
+
+## SSR: Why Next.js Exists
+
+Your plain React app is **client-side only** by default. The server ships a blank HTML page and a big fat JS bundle. Your user stares at a white screen until that bundle downloads, parses, and executes.
+
+> _"But wait, my Next.js page already has text in it, it's not blank!"_
+> That's because Next.js renders pages **statically by default**. Try fetching data on the client side and see if it's visible on first load. A blank white screen is exactly what you'd get with bare [Vite](https://vitejs.dev/).
+
+### The Problems with Pure CSR
+
+1. **Flash of blank screen**: the user waits for the JS bundle to load
+2. **SEO is cooked**: Google can read JS, but slowly and sloppily. It _knows_ HTML by heart though, and your HTML is a white screen.
+
+### The Next.js Fix
+
+With Next.js you fetch data on the **server** (via Node) and pass it into your component:
+
+```jsx
+// Pages Router
+export async function getServerSideProps() {
+    const data = await fetchSomeData();
+    return { props: { data } };
+}
+
+export default function Page({ data }) {
+    return <div>{data.title}</div>;
+}
+```
+
+Now the server sends an HTML page **with actual content in it**. Your user gets all the data immediately, the wait for the JS bundle becomes barely noticeable, and Google is happy happy happy because it has full context right there in the HTML.
+
+Once the JS bundle does load, it makes the page interactive. This process is called **hydration**.
+
+Anyways, that's it for today and I hope I don't see you next time.
+Go drink some water now.
