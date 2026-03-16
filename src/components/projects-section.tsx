@@ -29,20 +29,33 @@ export default function ProjectsSection() {
                                 </Card.Description>
                                 <TagGroup>
                                     <TagGroup.List className="flex flex-wrap gap-[6px]">
-                                        {project.tags.map(({ label, icon }) => (
-                                            <Tag
-                                                key={label}
-                                                className="pointer-events-none"
-                                                id={label}
-                                            >
-                                                <Icon
-                                                    icon={icon}
-                                                    width={12}
-                                                    className="mr-1"
-                                                />
-                                                {label}
-                                            </Tag>
-                                        ))}
+                                        {project.tags.map(
+                                            ({ label, icon, href }) => (
+                                                <Tag
+                                                    key={label}
+                                                    className="group"
+                                                    id={label}
+                                                    render={(props) => (
+                                                        <a
+                                                            {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+                                                            href={href}
+                                                            target="_blank"
+                                                            rel="noreferrer"
+                                                        />
+                                                    )}
+                                                >
+                                                    <Icon
+                                                        icon={icon}
+                                                        width={12}
+                                                        className="mr-1"
+                                                    />
+                                                    {label}
+                                                    <span className="opacity-0 w-0 group-hover:w-1 group-hover:opacity-100 transition-all group-hover:ml-1 text-[10px]">
+                                                        ↗
+                                                    </span>
+                                                </Tag>
+                                            ),
+                                        )}
                                     </TagGroup.List>
                                 </TagGroup>
                             </div>
@@ -50,7 +63,7 @@ export default function ProjectsSection() {
                                 <Link
                                     href={project.liveUrl}
                                     target="_blank"
-                                    className="text-[11px] text-muted no-underline hover:text-accent"
+                                    className="text-[11px] text-foreground no-underline hover:text-accent"
                                 >
                                     {indexPageContent.links.live}
                                 </Link>
@@ -60,7 +73,7 @@ export default function ProjectsSection() {
                                 <Link
                                     href={project.githubUrl}
                                     target="_blank"
-                                    className="text-[11px] text-muted no-underline hover:text-accent"
+                                    className="text-[11px] text-foreground no-underline hover:text-accent"
                                 >
                                     {indexPageContent.links.github}
                                 </Link>

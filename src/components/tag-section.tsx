@@ -15,6 +15,7 @@ export default function TagSection({
         label: string;
         icon: string;
         note?: string;
+        href: string;
     }[];
     separator?: "full" | "narrow";
     live?: boolean;
@@ -38,11 +39,19 @@ export default function TagSection({
                 </p>
                 <TagGroup>
                     <TagGroup.List className="flex flex-wrap gap-[6px]">
-                        {tags.map(({ id, label, icon, note }) => (
+                        {tags.map(({ id, label, icon, note, href }) => (
                             <Tag
                                 key={id ?? label}
                                 id={id ?? label}
-                                className="pointer-events-none"
+                                className="group"
+                                render={(props) => (
+                                    <a
+                                        {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+                                        href={href}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    />
+                                )}
                             >
                                 <Icon icon={icon} width={12} className="mr-1" />
                                 {label}
@@ -51,6 +60,9 @@ export default function TagSection({
                                         {note}
                                     </span>
                                 )}
+                                <span className="opacity-0 w-0 group-hover:w-1 group-hover:opacity-100 transition-all group-hover:ml-1 text-[10px]">
+                                    ↗
+                                </span>
                             </Tag>
                         ))}
                     </TagGroup.List>
