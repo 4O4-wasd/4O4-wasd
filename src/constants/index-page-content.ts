@@ -1,7 +1,6 @@
 export const indexPageContent = {
     nav: {
         brand: "// 4O4",
-        blogButton: "read my blogs",
         hireButton: "hire me (pls)",
         hireEmail: "mailto:dontcontactmeiamnotfourofour@gmail.com",
     },

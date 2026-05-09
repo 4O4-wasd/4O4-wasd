@@ -10,18 +10,6 @@ export default function Nav() {
             </span>
             <div className="flex items-center self-end xs:self-auto gap-2 flex-wrap">
                 <Button
-                    size="sm"
-                    render={({ ref, ...props }) => (
-                        <Link
-                            {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
-                            ref={ref as React.Ref<HTMLAnchorElement>}
-                            href="/blog"
-                        />
-                    )}
-                >
-                    {indexPageContent.nav.blogButton}
-                </Button>
-                <Button
                     variant="outline"
                     size="sm"
                     render={({ ref, ...props }) => (
